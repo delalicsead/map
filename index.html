@@ -30,8 +30,18 @@
         iconBase + 'info-i_maps.png'
     ];
 
+
+    function setPosition(position) {
+        uluru.lat = position.coords.latitude;
+        uluru.lng = position.coords.longitude;
+    }
+
     // Map init function
     function initMap() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition);
+        }
+
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 10,
             center: uluru
